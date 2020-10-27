@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, Image, FlatList, ActivityIndicator, Alert } from 'react-native'
 import { Card } from 'react-native-paper'
 import { FAB } from 'react-native-paper';
+import { useSelector, useDispatch } from 'react-redux'
+
 
 const Home = ({ navigation }) => {
 
@@ -36,28 +38,42 @@ const Home = ({ navigation }) => {
     // ]
 
 
-    const [data, setData] = useState([])
-    const [loading, setLoading] = useState(true)
+    // const [data, setData] = useState([])
+    // const [loading, setLoading] = useState(true)
+    const dispatch = useDispatch()
+    const {data,loading} = useSelector((state) => {
+        return state
+    })
 
     const fetchData = () => {
-        fetch("http://1fdd10643eda.ngrok.io/",{
-            method:"GET",
-            headers:{
-                "Content-Type":"application/json"
+        fetch("http://1fdd10643eda.ngrok.io/", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
             }
         })
-        .then(res=>res.json())
-        .then(results => {
-            setData(results)
-            setLoading(false)
-        }).catch(e=>{
-            Alert.alert("Something went wrong")
-        })
+            .then(res => res.json())
+            .then(results => {
+                // setData(results)
+                // setLoading(false)
+                dispatch({
+                    type:"ADD_DATA",
+                    payload:results
+                })
+
+                dispatch({
+                    type:"SET_LOADING",
+                    payload:false
+                })
+
+            }).catch(e => {
+                Alert.alert("Something went wrong")
+            })
     }
     // runs only once
     useEffect(() => {
-       fetchData()            
-      
+        fetchData()
+
     }, [])
 
     const renderList = ((item) => {
@@ -78,17 +94,17 @@ const Home = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1 }}>
-   
-                <FlatList
-                    data={data}
-                    onRefresh={()=>fetchData()}
-                    refreshing={loading}
-                    renderItem={({ item }) => {
-                        console.log("flat list data", item)
-                        return renderList(item)
-                    }}
-                    keyExtractor={item => `${item._id}`}
-                />
+
+            <FlatList
+                data={data}
+                onRefresh={() => fetchData()}
+                refreshing={loading}
+                renderItem={({ item }) => {
+                    console.log("flat list data", item)
+                    return renderList(item)
+                }}
+                keyExtractor={item => `${item._id}`}
+            />
 
             <FAB
                 style={styles.fab}
