@@ -36,11 +36,11 @@ function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ ...myOptions, title: "create Employee" }}
+          options={{ ...myOptions, title: "List of Users" }}
         />
         <Stack.Screen name="create"
           component={CreateEmployee}
-          options={{ ...myOptions, title: "Profile" }}
+          options={{ ...myOptions, title: "User Profile" }}
         />
         <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>

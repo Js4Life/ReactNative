@@ -12,7 +12,7 @@ const Profile = (props) => {
         console.log(_id)
 
         const deleteEmployee = () => {
-            fetch("https://nodeserverreact.herokuapp.com/",{
+            fetch("https://nodeserverreact.herokuapp.com/delete",{
                 method:"POST",
                 headers:{
                     'Content-Type':'application/json'
@@ -97,13 +97,13 @@ const Profile = (props) => {
                         )
                     
                     }}>
-                    Edit
+                    Edit Me
                 </Button>
                 <Button icon="delete"
                     mode="contained"
                     theme={theme}
                     onPress={() => deleteEmployee()}>
-                    Fire Employee
+                    Delete User
                 </Button>
             </View>
 
