@@ -40,7 +40,7 @@ const CreateEmployee = ({ navigation, route }) => {
 
 
     const submitData = () => {
-        fetch("http://1fdd10643eda.ngrok.io/send-data", {
+        fetch("https://nodeserverreact.herokuapp.com/send-data", {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ const CreateEmployee = ({ navigation, route }) => {
     }
 
     const updateDetails = () => {
-        fetch("http://1fdd10643eda.ngrok.io/update", {
+        fetch("https://nodeserverreact.herokuapp.com/update", {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'

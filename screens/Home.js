@@ -52,7 +52,7 @@ const Home = ({ navigation }) => {
   const {data,loading} = state
 
     const fetchData = () => {
-        fetch("http://1fdd10643eda.ngrok.io/", {
+        fetch("https://nodeserverreact.herokuapp.com/", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"

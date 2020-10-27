@@ -12,7 +12,7 @@ const Profile = (props) => {
         console.log(_id)
 
         const deleteEmployee = () => {
-            fetch("http://1fdd10643eda.ngrok.io/delete",{
+            fetch("https://nodeserverreact.herokuapp.com/",{
                 method:"POST",
                 headers:{
                     'Content-Type':'application/json'
