@@ -1,9 +1,10 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState ,useContext} from 'react'
 import { View, Text, StyleSheet, Image, FlatList, ActivityIndicator, Alert } from 'react-native'
 import { Card } from 'react-native-paper'
 import { FAB } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux'
+import {myContext} from '../App'
 
 
 const Home = ({ navigation }) => {
@@ -40,10 +41,15 @@ const Home = ({ navigation }) => {
 
     // const [data, setData] = useState([])
     // const [loading, setLoading] = useState(true)
-    const dispatch = useDispatch()
-    const {data,loading} = useSelector((state) => {
-        return state
-    })
+
+    // const dispatch = useDispatch()
+    // const {data,loading} = useSelector((state) => {
+    //     return state
+    // })
+
+  const {state , dispatch} =  useContext(myContext)
+
+  const {data,loading} = state
 
     const fetchData = () => {
         fetch("http://1fdd10643eda.ngrok.io/", {
